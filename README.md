@@ -44,7 +44,8 @@ Main configuration file (installed to workspaces) that:
 Defines the base image with:
 - Homebrew package manager
 - Cloud CLIs (gcloud, aws, gh, glab)
-- Development tools (terraform, vim, htop, mc)
+- Development tools (terraform, go, vim, htop, mc)
+- Claude Code CLI
 - Custom bootstrap configuration
 
 ### Scripts
@@ -73,8 +74,13 @@ Defines the base image with:
 
 ### ✅ Development Tools
 - Terraform
+- Go
 - vim, htop, mc
 - Custom bootstrap configuration
+
+### ✅ Claude Code
+- Claude AI command-line tool installed and available
+- Config directory mounted from host (`~/.claude`)
 
 ### ⚠️ Git Commit Signing
 **Note**: Git commits from within the dev environment will **not** be signed. The `turn-off-git-signing.sh` script automatically disables commit and tag signing when the container starts.
