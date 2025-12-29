@@ -32,7 +32,7 @@ RUN brew install awscli
 #RUN brew install gcloud-cli
 RUN curl -fsSL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz \
   | tar -xz -C ${HOME} && \
-  ${HOME}/google-cloud-sdk/install.sh --quiet --usage-reporting=false --path-update=true && \
+  ${HOME}/google-cloud-sdk/install.sh --quiet --usage-reporting=false --path-update=true
 ENV PATH="${HOME}/google-cloud-sdk/bin:${PATH}"
 RUN gcloud components install -q alpha beta
 
