@@ -1,0 +1,45 @@
+FROM alpine:3.23
+
+# Bootstrap
+ENV USER=root
+RUN apk add --no-cache curl zsh git sudo shadow
+RUN sh -c "$(curl -fsSL https://raw.github.com/nikolaybotev/bootstrap/main/install.sh)"
+
+# Claude Code
+RUN apk add --no-cache bash curl libgcc libstdc++ ripgrep
+RUN curl -fsSL https://claude.ai/install.sh | bash
+ENV PATH="/root/.local/bin:${PATH}"
+
+# GitLab CLI
+RUN apk add --no-cache glab
+
+# GitHub CLI
+RUN apk add --no-cache github-cli
+
+# AWS CLI
+RUN apk add --no-cache aws-cli
+
+# Google Cloud CLI
+RUN apk add --no-cache bash curl python3
+RUN curl -fsSL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz | tar -xz -C /opt
+RUN /opt/google-cloud-sdk/install.sh --quiet --usage-reporting=false --path-update=true
+ENV PATH="/opt/google-cloud-sdk/bin:${PATH}"
+RUN gcloud components install -q alpha beta
+
+# Terraform
+RUN apk add --no-cache unzip libc6-compat
+RUN curl -fsSL https://releases.hashicorp.com/terraform/1.14.2/terraform_1.14.2_linux_amd64.zip -o /tmp/terraform.zip && \
+    unzip -d /usr/local/bin/ /tmp/terraform.zip && \
+    rm /tmp/terraform.zip
+RUN chmod +x /usr/local/bin/terraform
+
+# go
+RUN apk add --no-cache go
+
+# jq
+RUN apk add --no-cache jq 
+
+# vim, htop, mc ...
+RUN apk add --no-cache vim
+RUN apk add --no-cache htop
+RUN apk add --no-cache mc
