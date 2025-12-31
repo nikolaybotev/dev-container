@@ -45,3 +45,16 @@ RUN brew install go
 
 # vim, htop, mc
 RUN brew install vim htop mc
+
+# SDKMAN
+RUN brew install zip
+RUN curl -s "https://get.sdkman.io" | bash && \
+  bash -c "source ${HOME}/.sdkman/bin/sdkman-init.sh" && ls -la ${HOME}
+ENV SDKMAN_DIR="${HOME}/.sdkman"
+ENV PATH="${SDKMAN_DIR}/bin:${PATH}"
+
+# Java
+RUN zsh -i -c "sdk install java 21.0.9-tem"
+RUN zsh -i -c "sdk install java 25.0.1-tem"
+
+ENTRYPOINT ["zsh"]
