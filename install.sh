@@ -29,12 +29,17 @@ echo "Installing dev container configuration..."
 echo "Target directory: $TARGET_DIR"
 echo ""
 
+# Create bound directories if they don't exist
+mkdir -p "${HOME}/.claude"
+mkdir -p "${HOME}/.config"
+mkdir -p "${HOME}/.ssh"
+
 # Create .devcontainer directory if it doesn't exist
 mkdir -p "$DEVCONTAINER_DIR"
 
 # Copy deployment files
 echo "Copying deployment files (devcontainer.json etc)..."
-cp "${SCRIPT_DIR}/deployment/*" "${DEVCONTAINER_DIR}/"
+cp "${SCRIPT_DIR}/deployment/"* "${DEVCONTAINER_DIR}/"
 
 echo ""
 echo "=========================================="
